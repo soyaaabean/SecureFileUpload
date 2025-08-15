@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head><title>Upload File</title></head>
+<body>
+  <h2>Upload File</h2>
+  <form method="POST" enctype="multipart/form-data">
+    {{ form.hidden_tag() }}   <!-- CSRF token automatically included -->
+
+    <!-- File input -->
+    <div>
+      {{ form.file.label }}<br>
+      {{ form.file() }}
+      <!-- Display error messages for the file field -->
+      {% if form.file.errors %}
+          <ul style="color:red;">
+          {% for error in form.file.errors %}
+              <li>{{ error }}</li>
+          {% endfor %}
+          </ul>
+      {% endif %}
+  </div>
+
+  <!-- Submit button -->
+  <div>
+      {{ form.submit() }}
+  </div>
+</form>
+<a href="{{ url_for('list_files') }}">My Files</a>
+</body>
+</html>
+
+

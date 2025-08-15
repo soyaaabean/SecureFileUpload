@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block content %}
+  <h1>Create account</h1>
+  <form method="POST" novalidate>
+    {{ form.hidden_tag() }} <!--This is linked to CSRF Token-->
+    <label>Username</label>
+    {{ form.username(size=32) }}
+    {% for e in form.username.errors %}<div class="err">{{ e }}</div>{% endfor %}
+
+    <label>Password</label>
+    {{ form.password() }}
+    <small>At least 8 characters.</small>
+    {% for e in form.password.errors %}<div class="err">{{ e }}</div>{% endfor %}
+
+    <!-- Submit button -->
+    {{ form.submit(class_="btn") }}
+    <p>Have an account? <a href="{{ url_for('login') }}">Log in</a></p>
+  </form>
+{% endblock %}
