@@ -287,8 +287,10 @@ def create_app():
         resp.headers["X-Content-Type-Options"] = "nosniff" # This tells the browser to not guess any files but to allow only the ones we declared as safe, to stop attacks where it tricks the browser to run a dangerous file
         resp.headers["X-Frame-Options"] = "DENY" # Stops the site to load in an <iframe> on another site. Protects againts clickjacking
         resp.headers["X-XSS-Protection"] = "0" # This would disable the XSS (Cross-Site Scripting) old, builtin filter on the web browser.
-        return resp                            # Could sometimes be safer since the old filter could be bypasses, and nowadays the web browsers more rely on CSP (Content Security Policy)
-
+        # Could sometimes be safer since the old filter could be bypasses, and nowadays the web browsers more rely on CSP (Content Security Policy)
+        resp.headers["Content-Security-Policy"] = "default-src 'self'; script-src 'self'; style-src 'self'" # CSP 
+        return resp 
+    
     return app
 
 
