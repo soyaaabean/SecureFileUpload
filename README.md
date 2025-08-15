@@ -41,7 +41,7 @@ DATABASE_URL=sqlite:///database.db
 ```bash
 flask run  # Should be running on https://127.0.0.1:5000
 ```
-
+NOTE: Before running, create an uploads/ folder in the project root.
 ---
 
 # What to Expect
